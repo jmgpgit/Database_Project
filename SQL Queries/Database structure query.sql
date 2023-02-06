@@ -132,14 +132,17 @@ CREATE TABLE IF NOT EXISTS `blockbuster`.`rental` (
   `customer_id` VARCHAR(45) NOT NULL,
   `return_date` VARCHAR(45) NULL DEFAULT NULL,
   `staff_id` VARCHAR(45) NULL DEFAULT NULL,
-  `inventory_id` INT NOT NULL,
-  `rental_time` VARCHAR(45) NULL,
-  `days_rented` VARCHAR(45) NULL,
-  PRIMARY KEY (`rental_id`, `customer_id`, `inventory_id`),
-  INDEX `fk_rental_inventory1_idx` (`inventory_id` ASC) VISIBLE,
+  `rental_time` VARCHAR(45) NULL DEFAULT NULL,
+  `days_rented` VARCHAR(45) NULL DEFAULT NULL,
+  `inventory_id` INT NULL,
+  `film_id` INT NULL,
+  PRIMARY KEY (`rental_id`, `customer_id`, `inventory_id`, `film_id`),
+  INDEX `fk_rental_inventory1_idx` (`inventory_id` ASC, `film_id` ASC) VISIBLE,
   CONSTRAINT `fk_rental_inventory1`
-    FOREIGN KEY (`inventory_id`)
-    REFERENCES `blockbuster`.`inventory` (`inventory_id`))
+    FOREIGN KEY (`inventory_id` , `film_id`)
+    REFERENCES `blockbuster`.`inventory` (`inventory_id` , `film_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
