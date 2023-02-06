@@ -2,7 +2,7 @@
 
 ## ETL
 
-### Exploration
+### Extraction/Exploration
 
 The data is relatively clean, with a few useless columns including only repeated or null values.
 There is a clear ID connection between most tables except for the actors table and the films table. The Old HDD conveniently has the actors and films named, which we can use to create new keys. Language is a fairly useless dataset but we should leave it for generality and future data growth.
